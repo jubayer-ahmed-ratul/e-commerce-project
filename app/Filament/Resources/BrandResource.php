@@ -53,6 +53,8 @@ class BrandResource extends Resource
                     ->label('Last Modified At')
                     ->dateTime()
                     ->sortable(),
+
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
