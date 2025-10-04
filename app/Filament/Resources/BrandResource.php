@@ -20,6 +20,7 @@ class BrandResource extends Resource
     protected static ?string $navigationLabel = 'Brands';
     protected static ?string $navigationGroup = 'Products';
 
+
     // FORM SCHEMA
     public static function form(Form $form): Form
     {
