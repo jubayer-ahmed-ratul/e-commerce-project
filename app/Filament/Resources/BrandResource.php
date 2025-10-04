@@ -6,6 +6,7 @@ use App\Filament\Resources\BrandResource\Pages;
 use App\Models\Brand;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\RichEditor;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
