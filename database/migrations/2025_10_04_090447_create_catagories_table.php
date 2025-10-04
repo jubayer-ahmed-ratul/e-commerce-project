@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catagories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->unsignedBigInteger('parent')->nullable();
-            $table->boolean('visibility');
-            $table->string('description');
-            $table->timestamps();
-        });
+      Schema::create('catagories', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('slug')->unique();
+    $table->unsignedBigInteger('parent')->nullable();
+    $table->boolean('visibility')->default(1);
+    $table->string('description')->nullable();
+    $table->timestamps();
+});
+
+
+
     }
 
     /**
@@ -27,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('catagories');
+       Schema::dropIfExists('catagories');
+
     }
 };
