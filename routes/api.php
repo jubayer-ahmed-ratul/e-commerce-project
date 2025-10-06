@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CatagoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/brands', [BrandController::class, 'index']);
 Route::get('/brand/search/{id}', [BrandController::class, 'show']);
+
+// Catagories
+Route::get('/catagories', [CatagoryController::class, 'index']);
+Route::get('/catagories/search/{slug}', [CatagoryController::class, 'show']);

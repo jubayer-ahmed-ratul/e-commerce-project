@@ -45,7 +45,8 @@ class BrandController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Brand retrieved successfully.',
-            'data' => $brand
+            'data' => $brand,
+            'products' => ''
         ], 200);
     }
 }
