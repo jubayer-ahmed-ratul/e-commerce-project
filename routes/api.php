@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\CatagoryController;
+use App\Http\Controllers\Api\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::get('/brand/search/{id}', [BrandController::class, 'show']);
 // Catagories
 Route::get('/catagories', [CatagoryController::class, 'index']);
 Route::get('/catagories/search/{slug}', [CatagoryController::class, 'show']);
+
+Route::apiResource('products', ProductController::class);
