@@ -43,13 +43,14 @@ class ProductsResource extends Resource
 {
     protected static ?string $model = Products::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-bolt';
+    protected static ?string $navigationGroup = 'Shop';
 
     public static function form(Form $form): Form
 {
     return $form
         ->schema([
-            Section::make('Basic Info')
+            Section::make()
                 ->schema([
                     Grid::make(2)
                         ->schema([

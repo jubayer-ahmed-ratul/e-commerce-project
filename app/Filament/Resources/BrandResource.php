@@ -18,7 +18,7 @@ class BrandResource extends Resource
     // ✅ Valid icon from Heroicons v2 outline set
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationLabel = 'Brands';
-    protected static ?string $navigationGroup = 'Products';
+    protected static ?string $navigationGroup = 'Shop';
 
 
     // FORM SCHEMA
