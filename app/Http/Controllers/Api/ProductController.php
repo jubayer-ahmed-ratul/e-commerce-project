@@ -15,7 +15,21 @@ class ProductController extends Controller
     public function index()
     {
         // সব Product নিয়ে আসা, Brand relation সহ
-        return Products::with('brand')->get();
+        $products = Products::with('images')->with('brand')->with('catagory')->get();
+
+        if ($products->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No visible catagories found.',
+                'data' => []
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Visible catagories retrieved successfully.',
+            'data' => $products
+        ], 200);
     }
 
     /**
