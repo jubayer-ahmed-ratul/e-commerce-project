@@ -4,12 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use App\Models\UserType;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\ImageColumn;
+
+use Filament\Forms\Components\Select;
 
 class UserResource extends Resource
 {
@@ -34,8 +37,11 @@ class UserResource extends Resource
 
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required(fn ($record) => !$record)
-                    ->dehydrateStateUsing(fn ($state) => $state ? bcrypt($state) : null),
+                    ->label('Password')
+                    ->nullable()
+                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->hint('Leave blank to keep the same password'),
 
                 Forms\Components\FileUpload::make('profile_photo')
                     ->label('Profile Photo')
@@ -43,6 +49,12 @@ class UserResource extends Resource
                     ->disk('public')   // storage disk
                     ->directory('profile-photos') // optional folder
                     ->maxSize(1024),   // max 1MB
+
+                    Select::make('user_types_id')
+                    ->label('User Type')
+                    ->options(\App\Models\UserType::pluck('name', 'id'))
+                    ->searchable()
+                    ->required(),
             ]);
     }
 
@@ -57,6 +69,7 @@ class UserResource extends Resource
                     ->size(50),
 
                 Tables\Columns\TextColumn::make('id')->sortable(),
+                Tables\Columns\TextColumn::make('userType.name')->label('User Types'),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('email')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),

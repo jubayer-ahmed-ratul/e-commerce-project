@@ -17,6 +17,7 @@ class User extends Authenticatable
         'email',
         'password',
         'profile_photo',
+        'user_types_id'
     ];
 
     protected $hidden = [
@@ -28,4 +29,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+     public function userType()
+    {
+        return $this->belongsTo(UserType::class, 'user_types_id');
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customers::class);
+    }
+
 }
